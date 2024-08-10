@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJs Project
 
-## Getting Started
+This is a Next.js-based web application designed to assist users with their education and immigration queries. This project uses React with TypeScript, Tailwind CSS for styling, and Prisma for database management with PostgreSQL.
+## Features
 
-First, run the development server:
+- Responsive UI: Built with Tailwind CSS for a modern and responsive user experience.
+- User Form Handling: Integrated form to collect user queries, storing data in a PostgreSQL database.
+- API Integration: Backend API routes are configured to handle user interactions.
+
+
+## Project Setup Instruction
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+https://github.com/akashthakur09/NextJs_project.git
+cd NextJs_project
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
 
-## Learn More
+### 3. Configure Environment Variables
+Create a .env file in the root directory and add the following environment variables:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+DATABASE_URL=postgresql://username:password@localhost:5432/database_name
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 4. Setup PostgreSQL Database
+- Make sure PostgreSQL is installed and running on your system.
+- Create a new database using the following command in PostgreSQL:
 
-## Deploy on Vercel
+```bash
+CREATE DATABASE database_name;
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+- Replace database_name with your desired database name.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+Run Prisma migrations to set up your database schema:
+npx prisma migrate dev --name init
+
+```
+This command will create the necessary tables in your PostgreSQL database.
+
+## Running the Project
+### 1. Running the Development Server
+To start the development server, run:
+```bash
+npm run dev
+```
+This will launch frontend on http://localhost:3000.
+
+### 2. Running the Prisma Studio
+Prisma Studio is a visual editor for your database. 
+ 
+You can start it with:
+
+```bash
+npx prisma studio
+```
+This will open Prisma Studio in your browser, where you can view and manage the data in your PostgreSQL database.
+
+## Database Connection
+* This project uses Prisma as an ORM to interact with a PostgreSQL database.
+
+* Ensure your PostgreSQL server is running, and the connection details in your `.env` file are correct.
+
+* Generate Prisma Client After setting up your environment variables, generate the Prisma client:
+
+```bash
+npx prisma generate
+```
+This command generates the Prisma client, which is used to interact with the database.
+
+## Additional Information
+* Tailwind CSS: This project uses Tailwind CSS for styling. You can customize the design in `tailwind.config.ts`.
+* API Routes: API routes are located in src/pages/api/ and handle backend logic like form submissions.
+* Form Validation: Form validation is managed using the schema defined in src/Schema/formSchema.tsx.
